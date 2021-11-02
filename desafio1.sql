@@ -41,6 +41,7 @@ CREATE TABLE usuario_artista(
   `artista_id` INT NOT NULL,
   `usuario_artista` VARCHAR(101),
   PRIMARY KEY (`usuario_id`,`artista_id`),
+  FOREIGN KEY (`usuario_id`) REFERENCES usuario(`usuario_id`),
   FOREIGN KEY (`artista_id`) REFERENCES artista(`artista_id`)
 ) ENGINE = InnoDB;
 
@@ -89,12 +90,18 @@ VALUES
   ('Words Of Her Life', 5),
   ('Without My Streets', 5);
 
-INSERT INTO `usuario` (`usuario`, `idade`, `plano`, `valor_plano`)
+INSERT INTO `plano` (`plano`, `valor_plano`)
 VALUES
-  ('Thati', 23, 'gratuito', 0),
-  ('Cintia', 35, 'familiar', 7.99),
-  ('Bill', 20, 'universitario', 5.99),
-  ('Roger', 45, 'gratutito', 0);
+  ('gratuito', 0),
+  ('familiar', 7.99),
+  ('universitario', 5.99);
+
+INSERT INTO `usuario` (`usuario`, `idade`, `plano_id`)
+VALUES
+  ('Thati', 23, 1),
+  ('Cintia', 35, 2),
+  ('Bill', 20, 3),
+  ('Roger', 45, 1);
 
 INSERT INTO `usuario_artista` (`usuario_id`, `artista_id`, `usuario_artista`)
 VALUES
