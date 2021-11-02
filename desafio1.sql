@@ -27,7 +27,7 @@ CREATE TABLE usuario(
   `usuario` VARCHAR(50) NOT NULL,
   `idade` INT NOT NULL,
   `plano` VARCHAR(15),
-  `valor_plano` DECIMAL(2,2)
+  `valor_plano` DOUBLE
 ) ENGINE = InnoDB;
 
 CREATE TABLE usuario_artista(
