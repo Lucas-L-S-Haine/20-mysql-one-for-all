@@ -33,6 +33,7 @@ CREATE TABLE usuario(
 CREATE TABLE usuario_artista(
   `usuario_id` INT NOT NULL,
   `artista_id` INT NOT NULL,
+  `usuario_artista` VARCHAR(101),
   PRIMARY KEY (`usuario_id`,`artista_id`),
   FOREIGN KEY (`artista_id`) REFERENCES artista(`artista_id`)
 ) ENGINE = InnoDB;
@@ -40,6 +41,7 @@ CREATE TABLE usuario_artista(
 CREATE TABLE historico(
   `usuario_id` INT NOT NULL,
   `musica_id` INT NOT NULL,
+  `historico` VARCHAR(101),
   PRIMARY KEY (`usuario_id`,`musica_id`),
   FOREIGN KEY (`usuario_id`) REFERENCES usuario(`usuario_id`),
   FOREIGN KEY (`musica_id`) REFERENCES musica(`musica_id`)
@@ -88,30 +90,30 @@ VALUES
   ('Bill', 20, 'universitario', 5.99),
   ('Roger', 45, 'gratutito', 0);
 
-INSERT INTO `usuario_artista` (`usuario_id`, `artista_id`)
+INSERT INTO `usuario_artista` (`usuario_id`, `artista_id`, `usuario_artista`)
 VALUES
-  (1,1),
-  (1,3),
-  (1,4),
-  (2,1),
-  (2,3),
-  (3,1),
-  (3,2),
-  (4,4);
+  (1,1,'Thati-Walter Phoenix'),
+  (1,3,'Thati-Lance Day'),
+  (1,4,'Thati-Freedie Shannon'),
+  (2,1,'Cintia-Walter Phoenix'),
+  (2,3,'Cintia-Lance Day'),
+  (3,1,'Bill-Walter Phoenix'),
+  (3,2,'Bill-Peter Strong'),
+  (4,4,'Roger-Freedie Shannon');
 
-INSERT INTO `historico` (`usuario_id`, `musica_id`)
+INSERT INTO `historico` (`usuario_id`, `musica_id`, `historico`)
 VALUES
-  (1,1),
-  (1,6),
-  (1,14),
-  (1,16),
-  (2,13),
-  (2,17),
-  (2,2),
-  (2,15),
-  (3,4),
-  (3,16),
-  (3,6),
-  (4,3),
-  (4,18),
-  (4,11);
+  (1,1,'Thati-Soul For Us'),
+  (1,6,'Thati-Magic Circus'),
+  (1,14,'Thati-Diamond Power'),
+  (1,16,'Thati-Thang Of Thunder'),
+  (2,13,'Cintia-Home Forever'),
+  (2,17,'Cintia-Words Of Her Life'),
+  (2,2,'Cintia-Reflections Of Magic'),
+  (2,15,'Cintia-Honey, Let’s Be Silly'),
+  (3,4,'Bill-Troubles Of My Inner Fire'),
+  (3,16,'Bill-Thang Of Thunder'),
+  (3,6,'Bill-Magic Circus'),
+  (4,3,'Roger-Dance With Her Own'),
+  (4,18,'Roger-Without My Streets'),
+  (4,11,'Roger-Celebration Of More');
