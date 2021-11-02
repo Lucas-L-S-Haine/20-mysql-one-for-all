@@ -22,12 +22,18 @@ CREATE TABLE musica(
   FOREIGN KEY (`album_id`) REFERENCES album(`album_id`)
 ) ENGINE = InnoDB;
 
+CREATE TABLE plano(
+  `plano_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `plano` VARCHAR(15),
+  `valor_plano` DOUBLE
+) ENGINE = InnoDB;
+
 CREATE TABLE usuario(
   `usuario_id` INT PRIMARY KEY AUTO_INCREMENT,
   `usuario` VARCHAR(50) NOT NULL,
   `idade` INT NOT NULL,
-  `plano` VARCHAR(15),
-  `valor_plano` DOUBLE
+  `plano_id` INT,
+  FOREIGN KEY (`plano_id`) REFERENCES plano(`plano_id`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE usuario_artista(
