@@ -4,42 +4,45 @@ CREATE DATABASE SpotifyClone;
 USE SpotifyClone;
 
 CREATE TABLE artista(
-    `artista_id` INT PRIMARY KEY AUTO_INCREMENT,
-    `artista` VARCHAR(50) NOT NULL
+  `artista_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `artista` VARCHAR(50) NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE album(
-    `album_id` INT PRIMARY KEY AUTO_INCREMENT,
-    `album` VARCHAR(50) NOT NULL,
-    `artista_id` INT NOT NULL,
-    FOREIGN KEY (`artista_id`) REFERENCES artista(`artista_id`)
+  `album_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `album` VARCHAR(50) NOT NULL,
+  `artista_id` INT NOT NULL,
+  FOREIGN KEY (`artista_id`) REFERENCES artista(`artista_id`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE musica(
-    `musica_id` INT PRIMARY KEY AUTO_INCREMENT,
-    `musica` VARCHAR(50) NOT NULL,
-    `album_id` INT NOT NULL,
-    FOREIGN KEY (`album_id`) REFERENCES album(`album_id`)
+  `musica_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `musica` VARCHAR(50) NOT NULL,
+  `album_id` INT NOT NULL,
+  FOREIGN KEY (`album_id`) REFERENCES album(`album_id`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE usuario(
-    `usuario_id` INT PRIMARY KEY AUTO_INCREMENT,
-    `usuario` VARCHAR(50) NOT NULL,
-    `idade` INT NOT NULL,
-    `plano` VARCHAR(15),
-    `valor_plano` DECIMAL(2,2)
+  `usuario_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `usuario` VARCHAR(50) NOT NULL,
+  `idade` INT NOT NULL,
+  `plano` VARCHAR(15),
+  `valor_plano` DECIMAL(2,2)
 ) ENGINE = InnoDB;
 
 CREATE TABLE usuario_artista(
-    `usuario_id` INT NOT NULL,
-    `artista_id` INT NOT NULL,
-    PRIMARY KEY (`usuario_id`,`artista_id`)
+  `usuario_id` INT NOT NULL,
+  `artista_id` INT NOT NULL,
+  PRIMARY KEY (`usuario_id`,`artista_id`),
+  FOREIGN KEY (`artista_id`) REFERENCES artista(`artista_id`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE historico(
-    `usuario_id` INT NOT NULL,
-    `musica_id` INT NOT NULL,
-    PRIMARY KEY (`usuario_id`,`musica_id`)
+  `usuario_id` INT NOT NULL,
+  `musica_id` INT NOT NULL,
+  PRIMARY KEY (`usuario_id`,`musica_id`),
+  FOREIGN KEY (`usuario_id`) REFERENCES usuario(`usuario_id`),
+  FOREIGN KEY (`musica_id`) REFERENCES musica(`musica_id`)
 ) ENGINE = InnoDB;
 
 INSERT INTO `artista` (`artista`)
