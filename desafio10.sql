@@ -1,5 +1,6 @@
+DROP FUNCTION IF EXISTS quantidade_musicas_no_historico;
 DELIMITER $$
-CREATE FUNCTION quantidade_musicas_no_historico(nomeDeUsuario VARCHAR(50))
+CREATE FUNCTION quantidade_musicas_no_historico(idDeUsuario VARCHAR(50))
 RETURNS INT READS SQL DATA
 BEGIN
   DECLARE musicas INT;
@@ -8,7 +9,7 @@ BEGIN
     FROM SpotifyClone.historico AS H
     JOIN SpotifyClone.usuario AS U
     ON H.usuario_id = U.usuario_id
-    AND U.usuario = nomeDeUsuario
+    WHERE U.usuario_id = idDeUsuario
     INTO musicas;
   RETURN musicas;
 END $$
